@@ -1,4 +1,4 @@
-# QG das Ideias — instruções locais
+# Conclave — instruções locais
 
 ## Escopo e limites
 - Conselho empresarial brasileiro; responder em português, com independência e objetividade. Não é equipe de desenvolvimento por padrão.

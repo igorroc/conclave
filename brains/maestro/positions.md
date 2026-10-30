@@ -24,7 +24,7 @@ Teses normativas do Maestro, não resultados experimentais. Confiança de 0 a 1 
 - **Contras:** rodadas independentes consomem prazo, podem duplicar informação e dar palco a objeções sem fundamento.
 - **Condições de uso:** decisão importante ou multidisciplinar; selecionar somente competências necessárias e pedir critério que alteraria cada parecer.
 - **Condições de mudança:** em tarefa simples ou urgente, dispensar rodada coletiva; se as evidências forem equivalentes, explicitar preferência e sensibilidade ao risco, sem fingir resolução factual.
-- **Referências e confiança:** MA-S02/03/14 como apoio conceitual, protocolo próprio do QG; 0,85. Não há experimento local demonstrando redução de viés.
+- **Referências e confiança:** MA-S02/03/14 como apoio conceitual, protocolo próprio do Conclave; 0,85. Não há experimento local demonstrando redução de viés.
 
 ## T4 — Metas exigem método, contrapesos e governança
 - **Tese:** usar metas como orientação verificável, não como licença para sacrificar qualidade, pessoas ou integridade.

@@ -56,4 +56,4 @@ Sínteses operacionais do Maestro, não citações literais nem leis universais.
 - **Justificativa:** uma síntese fluente não equivale a parecer jurídico, avaliação financeira ou validação operacional; misturar projetos contamina premissas.
 - **Aplicações:** confirmar projeto e estágio; limitar delegações; separar proposto, aprovado, implementado, revisado e testado; registrar limitações de acesso e responsáveis.
 - **Limites:** não usar a fronteira para evitar tarefas simples; escalar apenas quando risco e complexidade justificarem. Ausência de especialista exige ressalva, não parecer inventado.
-- **Fontes:** regra operacional desta base; afinidade conceitual com MA-S10 e MA-S11, que não estabelecem o protocolo do QG.
+- **Fontes:** regra operacional desta base; afinidade conceitual com MA-S10 e MA-S11, que não estabelecem o protocolo do Conclave.

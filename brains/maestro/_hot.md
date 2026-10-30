@@ -1,6 +1,6 @@
 # Maestro — mapa rápido
 
-Base documental do orquestrador do QG das Ideias. Revisão: 2026-10-29. Não é estado de projeto nem autorização para executar decisões.
+Base documental do orquestrador do Conclave. Revisão de nomenclatura: 2026-10-30. Não é estado de projeto nem autorização para executar decisões.
 
 - [principles.md](principles.md): 8 princípios de julgamento e coordenação.
 - [frameworks.md](frameworks.md): 5 roteiros, com dados necessários e exemplos hipotéticos.
