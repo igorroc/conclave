@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Conclave · Voz local</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body><main>
+<header><p class="eyebrow">CONCLAVE / LABORATÓRIO LOCAL</p><h1>Uma mesa. Diferentes perspectivas.</h1><p>Experimente as vozes do conselho, sem enviar seus textos para serviços externos.</p></header>
+<section class="notice"><strong>Protótipo de avaliação.</strong> Não conectado aos agentes: insira as intervenções manualmente. Três vozes pt-BR são compartilhadas entre dez perfis; não são imitações de pessoas reais. Qualidade auditiva ainda não aprovada.</section>
+<p id="health" role="status">Verificando modelo…</p>
+<section aria-labelledby="composer-title"><h2 id="composer-title">Preparar uma intervenção</h2><div class="fields"><label>Especialista<select id="specialist"></select></label><label>Voz base provisória<select id="voice"></select></label><label>Velocidade<select id="speed"><option value="0.9">0,9×</option><option value="1" selected>1,0×</option><option value="1.1">1,1×</option></select></label></div>
+<p class="muted">O perfil é salvo apenas nesta sessão da página. Escolha os timbres após ouvir as amostras.</p>
+<label for="text">Texto da intervenção</label><textarea id="text" maxlength="6000" rows="6" placeholder="Cole uma resposta ou escreva um texto para ouvir…"></textarea><p id="count" class="muted">0 / 6000 caracteres</p>
+<div class="actions"><button id="generate" disabled>Gerar e ouvir</button><button id="enqueue" class="secondary">Adicionar à sequência</button></div></section>
+<section aria-labelledby="sequence-title"><h2 id="sequence-title">Sequência de falas</h2><ol id="queue"></ol><div class="actions"><button id="playQueue" disabled>Ouvir sequência</button><button id="clear" class="secondary">Limpar sequência</button></div></section>
+<section aria-labelledby="player-title"><h2 id="player-title">Reprodução</h2><p id="status" role="status" aria-live="polite">Nenhum áudio gerado.</p><audio id="audio" controls preload="none"></audio><div class="actions"><button id="stop" class="secondary">Parar / cancelar</button><a id="download" hidden download="conclave.wav">Baixar último WAV</a></div><p class="muted">A síntese em curso pode terminar internamente após cancelar; o resultado será descartado. Nenhum texto é gravado pelo aplicativo.</p></section>
+<section aria-labelledby="samples-title"><h2 id="samples-title">Ouça antes de escolher</h2><p>Compare as amostras reais das três vozes. Avalie clareza, números, nomes e naturalidade. Os arquivos foram produzidos pelo benchmark local.</p><div id="samples" class="samples"></div></section>
+<footer>Somente uso local · Kokoro ONNX · CPU · pt-BR · Sem clonagem vocal</footer>
+</main></body></html>

@@ -14,3 +14,10 @@
 credentials.json
 .DS_Store
 Thumbs.db
+/apps/voice/.venv/
+/apps/voice/.python/
+/apps/voice/models/
+/apps/voice/output/
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/

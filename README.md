@@ -126,6 +126,36 @@ Memória operacional não é mantida em notas do canvas. Notas antigas são lega
 
 O `.gitignore` exclui `projects/`, `memory/`, `decisions/`, `.maestri/`, `.maki/`, `.idea/` e padrões comuns de credenciais. Isso **não garante ausência de dados privados nos arquivos permitidos**, não remove arquivos já rastreados e não apaga publicações anteriores. Revise o conteúdo antes de cada commit ou publicação e não force a inclusão de caminhos privados.
 
+## Laboratório de voz local
+
+O módulo opcional [`apps/voice/`](apps/voice/) transforma textos inseridos manualmente em áudio pt-BR usando [kokoro-onnx](https://github.com/thewh1teagle/kokoro-onnx). **Não está conectado aos agentes** e não lê brains nem memórias. A qualidade auditiva ainda depende de aprovação do usuário.
+
+Requisitos: Windows, Python 3.12 e `uv`. No terminal, a partir de `apps/voice/`:
+
+```console
+uv sync --locked --python 3.12
+uv run python -X utf8 assets.py
+uv run python -X utf8 server.py
+```
+
+Abra `http://127.0.0.1:8765`. O download explícito obtém aproximadamente 354 MB de modelo e vozes oficiais, com SHA256 fixados em `assets.py`. O servidor não baixa arquivos ao iniciar. O ambiente Python e o runtime ocupam espaço adicional. Não use múltiplos workers nem exponha o serviço à rede.
+
+A interface oferece dez perfis provisórios, três vozes nativas (`pf_dora`, `pm_alex`, `pm_santa`), velocidade, sequência de intervenções, pausa, cancelamento e download WAV. Todos começam com a mesma voz provisória, não com identidades vocais definitivas; as alterações de perfil duram apenas a sessão da página. A geração ocorre em CPU, um trabalho por vez, com até três solicitações admitidas (uma ativa e duas em espera), limite de 6.000 caracteres e tempo máximo de espera/geração de 180 segundos. Parar descarta a síntese em curso e impede os próximos trechos; o trecho ativo pode terminar internamente.
+
+Textos e áudios gerados pela API não são persistidos nem incluídos nos logs do aplicativo. O download pelo navegador é uma ação explícita. Áudios de benchmark são persistidos apenas em `apps/voice/output/`, ignorado pelo Git, assim como modelos e ambiente virtual.
+
+Para preparar as nove amostras disponíveis na página e medir o desempenho:
+
+```console
+uv run python -X utf8 benchmark.py --offline
+uv run pytest -q
+uv run ruff check .
+```
+
+O benchmark bloqueia conexões por sockets Python durante a carga e síntese; não é uma auditoria de tráfego de código nativo ou do sistema. Ele grava métricas locais e mantém a aprovação auditiva como pendente. Para o teste opcional de interface real, é necessário Microsoft Edge instalado e `VOICE_BROWSER_TEST=1` no ambiente antes de executar `uv run pytest tests/test_browser.py -q`. Esse teste inicia e encerra seu próprio servidor e se recusa a usar uma porta já ocupada.
+
+Biblioteca upstream: MIT; modelo: Apache-2.0 conforme o README/model card upstream. Os pesos não são redistribuídos por este repositório. Antes de qualquer redistribuição, confira licenças, atribuições e eventuais avisos dos artefatos e dependências. Não há clonagem nem imitação de pessoas reais.
+
 ## Limites e estado atual
 
 - A base e os protocolos estão documentados; sua presença não comprova aplicação pelos agentes nem eficácia das recomendações.
