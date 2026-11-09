@@ -18,6 +18,7 @@ Thumbs.db
 /apps/voice/.python/
 /apps/voice/models/
 /apps/voice/output/
+/apps/voice/data/
 **/__pycache__/
 **/.pytest_cache/
 **/.ruff_cache/

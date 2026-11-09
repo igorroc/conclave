@@ -7,14 +7,9 @@ import numpy as np
 import soundfile as sf
 
 from assets import MODELS, verify
+from profiles import SPECIALISTS as SPECIALISTS
+from profiles import VOICES as VOICES
 
-VOICES = ("pf_dora", "pm_alex", "pm_santa")
-SPECIALISTS = {
-    "maestro": "Maestro", "professor-pardal": "Professor Pardal", "hater": "Hater",
-    "xeroque-rolmes": "Xeroque Rolmes", "tio-patinhas": "Tio Patinhas",
-    "pablo": "Pablo", "mvpzinho": "MVPzinho", "doutor-bo": "Doutor B.O.",
-    "seu-ze": "Seu Zé", "tubarao": "Tubarão",
-}
 MAX_TEXT = 6000
 
 

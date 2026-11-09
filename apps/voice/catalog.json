@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "voices": [
+    "pf_dora",
+    "pm_alex",
+    "pm_santa"
+  ],
+  "specialists": [
+    {
+      "id": "maestro",
+      "name": "Maestro",
+      "gender": "masculino",
+      "aliases": [],
+      "responsibility": "Coordenação e síntese",
+      "defaults": {
+        "voice": "pm_santa",
+        "speed": 0.95
+      }
+    },
+    {
+      "id": "professor-pardal",
+      "name": "Professor Pardal",
+      "gender": "masculino",
+      "aliases": [],
+      "responsibility": "Ideação e exploração técnica",
+      "defaults": {
+        "voice": "pm_alex",
+        "speed": 1.05
+      }
+    },
+    {
+      "id": "hater",
+      "name": "Dona do Contra",
+      "gender": "feminino",
+      "aliases": [
+        "Hater"
+      ],
+      "responsibility": "Crítica e riscos",
+      "defaults": {
+        "voice": "pf_dora",
+        "speed": 1.0
+      }
+    },
+    {
+      "id": "xeroque-rolmes",
+      "name": "Sherlocka",
+      "gender": "feminino",
+      "aliases": [
+        "Xeroque Rolmes"
+      ],
+      "responsibility": "Pesquisa de mercado",
+      "defaults": {
+        "voice": "pf_dora",
+        "speed": 0.95
+      }
+    },
+    {
+      "id": "tio-patinhas",
+      "name": "Tio Patinhas",
+      "gender": "masculino",
+      "aliases": [],
+      "responsibility": "Finanças",
+      "defaults": {
+        "voice": "pm_santa",
+        "speed": 0.9
+      }
+    },
+    {
+      "id": "pablo",
+      "name": "Pablo",
+      "gender": "masculino",
+      "aliases": [
+        "Pablo Marçal"
+      ],
+      "responsibility": "Marketing",
+      "defaults": {
+        "voice": "pm_alex",
+        "speed": 1.05
+      }
+    },
+    {
+      "id": "mvpzinho",
+      "name": "MVPzinha",
+      "gender": "feminino",
+      "aliases": [
+        "MVPzinho"
+      ],
+      "responsibility": "Validação de MVP",
+      "defaults": {
+        "voice": "pf_dora",
+        "speed": 1.05
+      }
+    },
+    {
+      "id": "doutor-bo",
+      "name": "Doutora B.O.",
+      "gender": "feminino",
+      "aliases": [
+        "Doutor B.O."
+      ],
+      "responsibility": "Jurídico",
+      "defaults": {
+        "voice": "pf_dora",
+        "speed": 0.9
+      }
+    },
+    {
+      "id": "seu-ze",
+      "name": "Seu Zé",
+      "gender": "masculino",
+      "aliases": [],
+      "responsibility": "Operações e execução autorizada",
+      "defaults": {
+        "voice": "pm_santa",
+        "speed": 1.0
+      }
+    },
+    {
+      "id": "tubarao",
+      "name": "Tubarão",
+      "gender": "masculino",
+      "aliases": [],
+      "responsibility": "Vendas e negociação",
+      "defaults": {
+        "voice": "pm_alex",
+        "speed": 1.0
+      }
+    }
+  ]
+}

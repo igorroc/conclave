@@ -8,9 +8,9 @@ O foco atual é um conselho empresarial com contexto brasileiro, mas o processo 
 
 ## O que este repositório contém
 
-Uma base documental em Markdown: instruções, especialidades, referências e protocolos de colaboração. Ela orienta os agentes, mas **não executa agentes sozinha**.
+Uma base documental em Markdown — instruções, especialidades, referências e protocolos — e o módulo local de voz em `apps/voice/`. A documentação orienta os agentes, mas **não executa agentes sozinha**.
 
-A operação atual usa o Maestri para coordenar os especialistas. Um clone deste repositório não instala o Maestri, não configura modelos, não cria agentes e não estabelece conexões automaticamente. Não há aplicação de fórum, interface web ou runtime de agentes incluído.
+A via ativa desta instalação é o **Maki com subagentes internos**, coordenados pelo Maestro em um terminal. A mesa web recebe rodadas estruturadas para audição, não é chat web e não inclui microfone/STT. Um clone não instala o Maki, não configura modelos nem ativa a ponte automaticamente. A integração está em implementação e ainda precisa de validação live; as roles antigas do Maestri permanecem como legado, sem alteração.
 
 ## Como o conselho trabalha
 
@@ -35,26 +35,28 @@ O processo completo está em [protocols/council.md](protocols/council.md).
 | --- | --- | --- |
 | Maestro | Coordenação, contexto e síntese | [maestro](brains/maestro/) |
 | Professor Pardal | Ideação e exploração técnica | [professor-pardal](brains/professor-pardal/) |
-| Hater | Crítica, premissas frágeis e riscos | [hater](brains/hater/) |
-| Xeroque Rolmes | Pesquisa de mercado e evidências | [xeroque-rolmes](brains/xeroque-rolmes/) |
+| Dona do Contra | Crítica, premissas frágeis e riscos | [hater](brains/hater/) |
+| Sherlocka | Pesquisa de mercado e evidências | [xeroque-rolmes](brains/xeroque-rolmes/) |
 | Tio Patinhas | Finanças e viabilidade | [tio-patinhas](brains/tio-patinhas/) |
-| Pablo Marçal | Marketing e posicionamento | [pablo](brains/pablo/) |
-| MVPzinho | Validação de hipóteses e MVP | [mvpzinho](brains/mvpzinho/) |
-| Doutor B.O. | Análise jurídica e riscos legais | [doutor-bo](brains/doutor-bo/) |
+| Pablo | Marketing e posicionamento | [pablo](brains/pablo/) |
+| MVPzinha | Validação de hipóteses e MVP | [mvpzinho](brains/mvpzinho/) |
+| Doutora B.O. | Análise jurídica e riscos legais | [doutor-bo](brains/doutor-bo/) |
 | Seu Zé | Operações e execução autorizada | [seu-ze](brains/seu-ze/) |
 | Tubarão | Vendas e negociação | [tubarao](brains/tubarao/) |
 
-Os nomes identificam papéis de trabalho. As bases representam especialidades e referências, não imitação de pessoas públicas, endosso dos autores citados ou parecer profissional habilitado.
+Os nomes identificam papéis de trabalho. As bases representam especialidades e referências, não imitação de pessoas públicas, endosso dos autores citados ou parecer profissional habilitado. Hater, Xeroque Rolmes, MVPzinho e Doutor B.O. permanecem aliases de entrada; IDs e pastas não mudam, nem registros históricos. Dona do Contra, Sherlocka, MVPzinha e Doutora B.O. têm apresentação feminina em português, sem estereótipos ou mudança de especialidade. Dona do Contra pode concordar quando a evidência sustenta a proposta.
 
 ## Como começar
 
-### Na instalação atual com Maestri
+### Na instalação atual com Maki
 
-1. Leia [AGENTS.md](AGENTS.md) para entender limites, responsabilidades e acesso à base.
-2. Confirme os agentes conectados com `maestri list`. Os nomes acima descrevem a configuração atual; não são criados pelo repositório.
-3. Forneça ao Maestro o projeto, o estágio e a pergunta que precisa resolver. Se houver memória local, retome pelo registro e pelo estado do projeto.
-4. Ao delegar, inclua o contexto, o escopo, o critério de aceite e o caminho absoluto do brain. Não pressuponha que arquivos Markdown foram carregados automaticamente.
-5. Peça uma síntese com evidências, divergências, limites e próximo passo. Só autorize execução depois de avaliar a recomendação.
+1. Leia [AGENTS.md](AGENTS.md) para entender limites, responsabilidades e acesso seletivo à base em `D:/conclave/`.
+2. Prepare o módulo de voz conforme abaixo. O plugin-fonte fica em `apps/voice/maki/`; a partir de `D:/conclave/apps/voice/`, instale a cópia local ao projeto com `uv run python install_plugin.py`. O instalador preserva configurações locais divergentes e recusa destinos fora do projeto.
+3. No Maki aberto em `D:/conclave`, **o usuário deve executar `/reload`**. Se o Maki avisar que o projeto ganhou `.maki/init.lua` desde a autorização anterior, inicie `maki --trust` nessa pasta para confiar apenas nessa execução; não use `--yolo`. Criar arquivos ou recarregar não comprova que subagentes e ponte funcionam: é necessário um teste real. Não é preciso executar `maestri list/ask/check` neste fluxo.
+4. Forneça ao Maestro ID/empresa, estágio, pergunta, contexto necessário, restrições, perda tolerável e critério de sucesso. Se houver memória local, retome pelo registro e pelo estado somente do projeto identificado.
+5. Maestro seleciona especialistas com `council_consult`, pede `council_counterpoint` quando há divergência material e conclui com sua síntese. A delegação inclui escopo, exclusões, aceite, validações e caminho absoluto `D:/conclave/brains/<slug>/`, começando por `_hot.md` e `voice.md`; não carregar toda a memória.
+6. Ao concluir, Maestro deve chamar `council_publish` automaticamente para enviar a rodada à API local, sem novo pedido de envio. Isso não autoriza publicação externa. `/conclave-status` mostra pendências e `/conclave-retry` reenvia rodadas concluídas sem repetir análises. Se o serviço falhar, os retornos textuais continuam no Maki; pendências em memória podem se perder no cancelamento ou `/reload`.
+7. Na web, selecione “Debate + síntese” ou “Somente síntese do Maestro” e clique para ouvir. Nenhum modo inicia áudio pela chegada da rodada ou pela simples seleção. Avalie evidências, divergências e limites antes de autorizar qualquer execução.
 
 Exemplo de pedido:
 
@@ -62,7 +64,7 @@ Exemplo de pedido:
 
 ### Em outra instalação
 
-Use a estrutura como referência, mas configure explicitamente os agentes e sua ferramenta de orquestração. As instruções locais contêm caminhos absolutos da instalação original (`D:/qg-de-ideias/`); adapte-os antes do uso em outra máquina. O nome da pasta e o ID interno `QG-BRAINS-01` foram preservados para manter referências existentes, apesar da identidade pública Conclave.
+Use a estrutura como referência, mas configure explicitamente os agentes e sua ferramenta de orquestração. As instruções ativas usam a raiz absoluta `D:/conclave/`; adapte-a antes do uso em outra máquina. O ID interno `QG-BRAINS-01` e os slugs foram preservados para manter referências existentes. Caminhos ou nomes antigos em registros históricos e roles Maestri não são instruções de instalação atuais.
 
 ## Como os brains são consultados
 
@@ -128,7 +130,9 @@ O `.gitignore` exclui `projects/`, `memory/`, `decisions/`, `.maestri/`, `.maki/
 
 ## Laboratório de voz local
 
-O módulo opcional [`apps/voice/`](apps/voice/) transforma textos inseridos manualmente em áudio pt-BR usando [kokoro-onnx](https://github.com/thewh1teagle/kokoro-onnx). **Não está conectado aos agentes** e não lê brains nem memórias. A qualidade auditiva ainda depende de aprovação do usuário.
+O módulo [`apps/voice/`](apps/voice/) usa kokoro-onnx para TTS pt-BR local, preservando entrada manual e amostras. A ponte Maki → API local → mesa web está em implementação; **não há comprovação live da integração nesta etapa documental**. O usuário relatou geração normal com as três vozes e aprovou a distribuição inicial, mas isso não equivale a aprovação detalhada de pronúncia ou naturalidade.
+
+**Local não significa deliberação offline:** prompts, contexto delegado e respostas dos subagentes passam pelo provedor de modelo configurado no Maki. Somente o TTS permanece local. Envie apenas o contexto necessário e autorizado.
 
 Requisitos: Windows, Python 3.12 e `uv`. No terminal, a partir de `apps/voice/`:
 
@@ -140,9 +144,22 @@ uv run python -X utf8 server.py
 
 Abra `http://127.0.0.1:8765`. O download explícito obtém aproximadamente 354 MB de modelo e vozes oficiais, com SHA256 fixados em `assets.py`. O servidor não baixa arquivos ao iniciar. O ambiente Python e o runtime ocupam espaço adicional. Não use múltiplos workers nem exponha o serviço à rede.
 
-A interface oferece dez perfis provisórios, três vozes nativas (`pf_dora`, `pm_alex`, `pm_santa`), velocidade, sequência de intervenções, pausa, cancelamento e download WAV. Todos começam com a mesma voz provisória, não com identidades vocais definitivas; as alterações de perfil duram apenas a sessão da página. A geração ocorre em CPU, um trabalho por vez, com até três solicitações admitidas (uma ativa e duas em espera), limite de 6.000 caracteres e tempo máximo de espera/geração de 180 segundos. Parar descarta a síntese em curso e impede os próximos trechos; o trecho ativo pode terminar internamente.
+O catálogo `apps/voice/catalog.json` mantém IDs, aliases e defaults dos dez perfis, com três vozes nativas (`pf_dora`, `pm_alex`, `pm_santa`). Defaults iniciais aprovados: Maestro `pm_santa/0.95`; Professor Pardal `pm_alex/1.05`; Dona do Contra `pf_dora/1.00`; Sherlocka `pf_dora/0.95`; Tio Patinhas `pm_santa/0.90`; Pablo `pm_alex/1.05`; MVPzinha `pf_dora/1.05`; Doutora B.O. `pf_dora/0.90`; Seu Zé `pm_santa/1.00`; Tubarão `pm_alex/1.00`. São ajustes iniciais, não dez identidades vocais distintas garantidas nem características psicológicas derivadas de gênero/timbre.
 
-Textos e áudios gerados pela API não são persistidos nem incluídos nos logs do aplicativo. O download pelo navegador é uma ação explícita. Áudios de benchmark são persistidos apenas em `apps/voice/output/`, ignorado pelo Git, assim como modelos e ambiente virtual.
+Os perfis de voz/velocidade são persistidos em `apps/voice/data/profiles.json`, ignorado pelo Git, com escrita atômica. `GET/PUT /api/profiles` usa `schema_version: 1` e os dez IDs canônicos; aceita apenas vozes do catálogo e velocidade de 0,8 a 1,2. Arquivo ilegível/corrompido é preservado e exige recuperação explícita, não sobrescrita silenciosa. Salvar/restaurar defaults deve ter confirmação visual; sem override, a geração resolve o perfil salvo no servidor.
+
+A geração ocorre em CPU, um trabalho por vez, com até três solicitações admitidas (uma ativa e duas em espera), limite de 6.000 caracteres e tempo máximo de espera/geração de 180 segundos. A mesa mantém reprodução serializada, pausa/continuação e parada; textos longos são segmentados sem remover ressalvas, números ou a ordem original. O texto original continua disponível. Parar descarta a síntese em curso e impede os próximos trechos; o trecho ativo pode terminar internamente.
+
+### Contrato e retenção de rodadas
+
+- `POST /api/rounds` publica texto, sem gerar áudio; exige autenticação local com token efêmero em `apps/voice/data/bridge-token`, renovado a cada partida e nunca enviado aos modelos ou logs. O serviço permanece em loopback com validação de Host/Origin, sem CORS aberto. Não exponha a credencial nem o serviço à rede.
+- Envelope versão 1: `round_id`, `project_id`, `title`, `session_id`, `status` (`complete`/`partial`), `interventions`, `synthesis` e `failures`. Cada intervenção contém `intervention_id`, `specialist_id` canônico, `phase`, `text`, `reply_to` e `order` contígua desde zero. A síntese tem campo próprio, fase `synthesis` e autoria `maestro`; falhas são metadados, não falas atribuídas.
+- Até nove análises independentes, três em paralelo, e uma etapa de até dois contrapontos dirigidos. Contraponto exige análise da própria especialista e vínculo anterior explícito. Sem divergência material, não fabricar discordância nem chamar simples análises de debate com contraponto. Síntese preserva convergências, divergências, evidências, limites e próximo passo, sem votação.
+- Limites: 6.000 caracteres por intervenção e 128 KiB por envelope; rejeição explícita, sem truncamento silencioso. Repetir `round_id` com conteúdo igual não duplica a rodada; conteúdo diferente gera conflito enquanto o ID estiver retido.
+- `GET /api/rounds` lista metadados; `GET /api/rounds/{id}` entrega o texto; `DELETE /api/rounds/{id}` remove a rodada. Retenção **somente em memória**: máximo de 20 rodadas, TTL de duas horas desde publicação (polling não renova) e máximo de **2,5 MiB** de envelopes serializados. Limites removem as mais antigas; reiniciar descarta todas. Exclusão/expiração impede novas gerações daquela rodada.
+- Rodada recebida não inicia áudio nem interrompe a fala em andamento. Os dois modos exigem clique e usam os perfis salvos, uma fala por vez. “Debate + síntese” toca análises, contrapontos existentes e síntese; “Somente síntese do Maestro” toca apenas a síntese.
+
+Textos e áudios de rodadas não são gravados em disco ou logs da ponte/API; apenas perfis de voz são persistidos pelo fluxo, além da credencial efêmera privada. Isso não elimina políticas de retenção do Maki/provedor nem substitui a memória documental do projeto. Download manual pelo navegador é ação explícita. O benchmark é separado e grava áudios/métricas em `apps/voice/output/`, ignorado pelo Git, assim como modelos e ambiente virtual.
 
 Para preparar as nove amostras disponíveis na página e medir o desempenho:
 
@@ -159,7 +176,7 @@ Biblioteca upstream: MIT; modelo: Apache-2.0 conforme o README/model card upstre
 ## Limites e estado atual
 
 - A base e os protocolos estão documentados; sua presença não comprova aplicação pelos agentes nem eficácia das recomendações.
-- Consultas pontuais a agentes já foram realizadas na instalação local, mas não equivalem à validação completa do fluxo, da integração ou de todas as especialidades.
+- Consultas pontuais anteriores não comprovam o novo fluxo. Plugin/subagentes Maki, ponte autenticada e reprodução de rodadas ainda exigem teste live; instalação, lint ou testes simulados não bastam para declarar integração ativa.
 - Disponibilidade dos agentes e do backend precisa ser verificada em cada tarefa. Falhas não autorizam inventar pareceres ou alterar configurações para contorná-las.
 - Referências têm níveis de acesso e datas próprios. Citações e sínteses não significam leitura integral dos livros, fatos atuais confirmados ou aconselhamento profissional.
 - Recomendações não autorizam transações, contratos, mudanças de sistemas, commits, pushes, publicações ou implantações. Essas ações exigem aprovação específica.

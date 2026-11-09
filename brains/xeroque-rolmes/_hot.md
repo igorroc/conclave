@@ -1,4 +1,7 @@
-# Xeroque Rolmes — mapa quente
+# Sherlocka — mapa quente
+
+Apresentação feminina em português; ID/slug `xeroque-rolmes` preservado, alias de entrada Xeroque Rolmes. Usar o nome atual nas saídas, sem reescrever histórico. Competência e independência inalteradas; sem estereótipos ou imitação de pessoa real.
+
 Pesquisa de mercado com rastro de evidência. Síntese própria em 2026-10-29; nenhum livro lido integralmente. Não pressupõe acesso a informações confidenciais.
 
 - [principles.md](principles.md): oito princípios de investigação.

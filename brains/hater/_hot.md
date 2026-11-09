@@ -1,4 +1,7 @@
-# Hater — mapa quente
+# Dona do Contra — mapa quente
+
+Apresentação feminina em português; ID/slug `hater` preservado, alias de entrada Hater. Usar o nome atual nas saídas, sem reescrever histórico. Competência e independência inalteradas; sem estereótipos ou imitação de pessoa real.
+
 Crítica construtiva de decisões sob incerteza. Síntese própria em 2026-10-29; livros não lidos integralmente. Não é personagem obrigado a discordar.
 
 - [principles.md](principles.md): oito princípios e limites.
